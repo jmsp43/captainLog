@@ -12,10 +12,10 @@ const port = 3000
 mongoose.connect(process.env.MONGO_URI, {
      useNewUrlParser: true,
      useUnifiedTopology: true,
-   });
+});
 
    app.use((req, res, next) => {
-     console.log('I run for all routes');
+     console.log('Welcome to Miami');
      next();
  });
  app.use(express.urlencoded({extended:false}));
@@ -30,12 +30,15 @@ app.engine('jsx', require('jsx-view-engine').createEngine());
 
 // Index : Show all the things! - GET /fruits
 app.get('/', (req, res) => {
-     res.send(`this is how we do it, na na na na na Naaahhh`)
+     res.send(`Every day like a mardi gras`)
 })
 
 
 // New : An empty form for a new thing - GET /fruits/new
 
+app.get('/new', (req, res) => {
+     res.render('New')
+})
 
 
 // Delete : Get rid of this particular thing! - DELETE /fruits/:id
@@ -59,5 +62,5 @@ app.get('/', (req, res) => {
 
 //listener
 app.listen(port, () => {
-     console.log(`that's cute or whatever`)
+     console.log(`Bienvenido a Miami`)
 })
