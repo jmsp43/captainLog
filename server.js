@@ -29,14 +29,14 @@ app.engine('jsx', require('jsx-view-engine').createEngine());
 // Routes here in INDUCES order
 
 // Index : Show all the things! - GET /fruits
-app.get('/', (req, res) => {
+app.get('/logs', (req, res) => {
      res.send(`Every day like a mardi gras`)
 })
 
 
 // New : An empty form for a new thing - GET /fruits/new
 
-app.get('/new', (req, res) => {
+app.get('/logs/new', (req, res) => {
      res.render('New')
 })
 
@@ -50,6 +50,17 @@ app.get('/new', (req, res) => {
 
 
 // Create : Make a new thing with this filled out form - POST /fruits
+app.post('/logs', async(req, res) => {
+     if (req.body.checkbox === 'on') {
+          req.body.checkbox = true
+     } else {
+          req.body.checkbox = false
+     }
+     // await logs.create(req.body, (error, createdLog) => {
+     //      res.redirect('/logs')
+     // })
+     res.send('all work no play okay')
+})
 
 
 
