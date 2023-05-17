@@ -63,15 +63,10 @@ app.delete('/logs/:id', async (req, res)=>{
 // Update : Update this specific thing with this updated form - PUT /fruits/:id
 
 // app.post("/logs", async (req, res) => {
-//      try {
 //          const { title, entry, shipIsBroken } = req.body;
 //          const newLog = new Log({ title, entry, shipIsBroken });
    
-//          newLog.save(res.redirect("/logs"));
-//      }
-//      catch (error){
-//          console.log(error)
-//      }
+//          await newLog.save(res.redirect("/logs"));
 //  });
 
 // Create : Make a new thing with this filled out form - POST /fruits
@@ -89,23 +84,14 @@ app.post('/logs', async (req, res) => {
      }
 })
 
-// app.get("/flights", async (req, res) => {
-//      try {
-//        const allFlights = await Flight.find({});
-//        res.render("Index", { flights: allFlights });
-//        // console.log(allFlights);
-//      } catch (error) {
-//        console.log(error);
-//      }
-//    });
 
 
 // Edit : A prefilled form to update a specific thing - GET /fruits/:id/edit
 app.get('/logs/:id/edit', async (req, res)=>{
      const foundLog = await Logs.findById(req.params.id)
-     res.render('Edit',{
-                    log: foundLog});
-     })
+     // console.log(foundLog)
+     res.render('Edit',{ log: foundLog });
+})
 
 // Show : Show me this one thing! - GET /fruits/:id (edited)
 app.get('/logs/:title', async (req, res) => {
