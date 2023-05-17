@@ -54,7 +54,10 @@ app.get('/logs/new', (req, res) => {
 
 
 // Delete : Get rid of this particular thing! - DELETE /fruits/:id
-
+app.delete('/logs/:id', async (req, res)=>{
+     await Logs.findByIdAndRemove(req.params.id)
+     res.redirect('/logs');
+});
 
 
 // Update : Update this specific thing with this updated form - PUT /fruits/:id

@@ -8,7 +8,7 @@ class Show extends React.Component {
             <h1> Log Show Page </h1>
             <br />
             <br />
-              <p>{log[0].title}</p>
+              <h2>{log[0].title}</h2>
               <p>{log[0].entry}</p>
               <p>Ship Broken?
                <br/>    {

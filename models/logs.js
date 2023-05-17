@@ -5,7 +5,7 @@ const model = mongoose.model;
 
 const logSchema = new Schema(
      {
-     _id: String,
+     // _id: String,
     title: String,
     entry: String,
     shipIsBroken: { type: Boolean, default: true },
