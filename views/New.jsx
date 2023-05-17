@@ -6,11 +6,17 @@ class New extends React.Component{
                <h1>I never seen so many Dominican women with cinnamon tans</h1>
 
                <form action="/logs" method="POST">
+                    <h3>Title: </h3>
+                    <br/>
                <input type='text'
                          name='title' />
+                    <br />
+                    <h3>Entry: </h3>
                     <br/>
                <input type='textarea'
                          name='entry' />
+                    <br />
+                    <h3>Ship Broken? </h3>
                     <br/>
                <input type='checkbox'
                          name='shipIsBroken' />

@@ -3,6 +3,7 @@ const express = require('express')
 require('dotenv').config()
 const mongoose = require('mongoose')
 const methodOverride = require('method-override');
+const logs = require('./models/logs')
 
 // global variables
 const app = express()
@@ -14,7 +15,7 @@ mongoose.connect(process.env.MONGO_URI, {
      useUnifiedTopology: true,
 });
 
-   app.use((req, res, next) => {
+app.use((req, res, next) => {
      console.log('Welcome to Miami');
      next();
  });
@@ -50,18 +51,29 @@ app.get('/logs/new', (req, res) => {
 
 
 // Create : Make a new thing with this filled out form - POST /fruits
-app.post('/logs', async(req, res) => {
-     if (req.body.checkbox === 'on') {
-          req.body.checkbox = true
-     } else {
-          req.body.checkbox = false
+app.post('/logs', async (req, res) => {
+     try {
+          if (req.body.shipIsBroken === 'on') {
+               req.body.shipIsBroken = true
+          } else {
+               req.body.shipIsBroken = false
+          }
+          await logs.create(req.body, res.redirect('/logs'))  
+     }  catch (error) {
+          console.log(error);
      }
-     // await logs.create(req.body, (error, createdLog) => {
-     //      res.redirect('/logs')
-     // })
-     res.send('all work no play okay')
+     
 })
 
+// app.get("/flights", async (req, res) => {
+//      try {
+//        const allFlights = await Flight.find({});
+//        res.render("Index", { flights: allFlights });
+//        // console.log(allFlights);
+//      } catch (error) {
+//        console.log(error);
+//      }
+//    });
 
 
 // Edit : A prefilled form to update a specific thing - GET /fruits/:id/edit
