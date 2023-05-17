@@ -62,12 +62,22 @@ app.delete('/logs/:id', async (req, res)=>{
 
 // Update : Update this specific thing with this updated form - PUT /fruits/:id
 
-// app.post("/logs", async (req, res) => {
-//          const { title, entry, shipIsBroken } = req.body;
-//          const newLog = new Log({ title, entry, shipIsBroken });
+app.put("/logs/:id", async (req, res) => {
+     try {
+          if (req.body.shipIsBroken === 'on') {
+               req.body.shipIsBroken = true
+          } else {
+               req.body.shipIsBroken = false
+          }
+          const { title, entry, shipIsBroken } = req.body;
    
-//          await newLog.save(res.redirect("/logs"));
-//  });
+          await Logs.findByIdAndUpdate(req.params.id, req.body);
+          res.redirect(`/logs/${req.params.id}`)
+     }
+     catch (error) {
+          console.log(error.message)
+     }
+ });
 
 // Create : Make a new thing with this filled out form - POST /fruits
 app.post('/logs', async (req, res) => {
