@@ -15,7 +15,8 @@ class Index extends React.Component {
       <div style = {styling}>
         <h1>Logs Index</h1>
         <ul>
-                {logs.map((log, i) => {
+                   {logs.map((log, i) => {
+                     key: {i}
             return (
               <li>
                       <a href={`/logs/${i}`}>{log.title}<br/>

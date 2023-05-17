@@ -102,7 +102,15 @@ app.post('/logs', async (req, res) => {
 
 
 // Show : Show me this one thing! - GET /fruits/:id (edited)
-
+app.get('/logs/:id', async (req, res) => {
+     try {
+          const foundLog = await Logs.findById(req.params.id)
+          res.render('Show', { log: foundLog });
+     }
+     catch (error) {
+          console.log(error.message)
+     }
+});
 
 //listener
 app.listen(port, () => {

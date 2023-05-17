@@ -4,9 +4,10 @@ const Schema = mongoose.Schema;
 const model = mongoose.model;
 
 const logSchema = new Schema(
-  {
-    title: { type: String },
-    entry: { type: String },
+     {
+     _id: String,
+    title: String,
+    entry: String,
     shipIsBroken: { type: Boolean, default: true },
   },
   { timestamps: true }
