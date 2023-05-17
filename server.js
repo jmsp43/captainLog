@@ -101,8 +101,11 @@ app.post('/logs', async (req, res) => {
 
 
 // Edit : A prefilled form to update a specific thing - GET /fruits/:id/edit
-
-
+app.get('/logs/:id/edit', async (req, res)=>{
+     const foundLog = await Logs.findById(req.params.id)
+     res.render('Edit',{
+                    log: foundLog});
+     })
 
 // Show : Show me this one thing! - GET /fruits/:id (edited)
 app.get('/logs/:title', async (req, res) => {
