@@ -102,15 +102,12 @@ app.post('/logs', async (req, res) => {
 
 
 // Show : Show me this one thing! - GET /fruits/:id (edited)
-app.get('/logs/:id', async (req, res) => {
-     try {
-          const foundLog = await Logs.findById(req.params.id)
+app.get('/logs/:title', async (req, res) => {
+          // const foundLog = await Logs.findById(req.params.id)
+          const foundLog = await Logs.find({ title: req.params.title})
           res.render('Show', { log: foundLog });
-     }
-     catch (error) {
-          console.log(error.message)
-     }
 });
+
 
 //listener
 app.listen(port, () => {

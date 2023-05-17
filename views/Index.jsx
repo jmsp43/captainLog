@@ -19,7 +19,7 @@ class Index extends React.Component {
                      key: {i}
             return (
               <li>
-                      <a href={`/logs/${i}`}>{log.title}<br/>
+                      <a href={`/logs/${log.title}`}>{log.title}<br/>
                          </a>
                       <br />
                       <br/>
