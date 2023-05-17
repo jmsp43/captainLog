@@ -3,7 +3,7 @@ const express = require('express')
 require('dotenv').config()
 const mongoose = require('mongoose')
 const methodOverride = require('method-override');
-const logs = require('./models/logs')
+const Logs = require('./models/logs')
 
 // global variables
 const app = express()
@@ -29,10 +29,21 @@ app.engine('jsx', require('jsx-view-engine').createEngine());
 // INDUCES
 // Routes here in INDUCES order
 
+app.get(('/'),(req, res) => {
+     res.send("Welcome to the Captain's Log")
+ })
+ 
+
 // Index : Show all the things! - GET /fruits
-app.get('/logs', (req, res) => {
-     res.send(`Every day like a mardi gras`)
-})
+app.get("/logs", async(req, res) => {
+     try {
+         const allLogs = await Logs.find({})
+         res.render("Index", { logs: allLogs })
+     }
+     catch (error) {
+         console.log(error.message)
+     }
+ });
 
 
 // New : An empty form for a new thing - GET /fruits/new
@@ -48,7 +59,17 @@ app.get('/logs/new', (req, res) => {
 
 // Update : Update this specific thing with this updated form - PUT /fruits/:id
 
-
+// app.post("/logs", async (req, res) => {
+//      try {
+//          const { title, entry, shipIsBroken } = req.body;
+//          const newLog = new Log({ title, entry, shipIsBroken });
+   
+//          newLog.save(res.redirect("/logs"));
+//      }
+//      catch (error){
+//          console.log(error)
+//      }
+//  });
 
 // Create : Make a new thing with this filled out form - POST /fruits
 app.post('/logs', async (req, res) => {
@@ -58,11 +79,11 @@ app.post('/logs', async (req, res) => {
           } else {
                req.body.shipIsBroken = false
           }
-          await logs.create(req.body, res.redirect('/logs'))  
+          await Logs.create(req.body) 
+          res.redirect('/logs')
      }  catch (error) {
           console.log(error);
      }
-     
 })
 
 // app.get("/flights", async (req, res) => {

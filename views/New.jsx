@@ -3,7 +3,7 @@ const React = require('react')
 class New extends React.Component{
      render() {
           return <div>
-               <h1>I never seen so many Dominican women with cinnamon tans</h1>
+               <h1>I'm going to Miami</h1>
 
                <form action="/logs" method="POST">
                     <h3>Title: </h3>
