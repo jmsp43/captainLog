@@ -1,36 +1,8 @@
-//imports
 const express = require('express')
-require('dotenv').config()
-const mongoose = require('mongoose')
-const methodOverride = require('method-override');
 const Logs = require('./models/logs')
-const Routes = require('./controllers/logs')
-
-// global variables
 const app = express()
-const port = 3000
 
-//middleware
-mongoose.connect(process.env.MONGO_URI, {
-     useNewUrlParser: true,
-     useUnifiedTopology: true,
-});
-
-app.use((req, res, next) => {
-     console.log('Welcome to Miami');
-     next();
- });
- app.use(express.urlencoded({extended:false}));
- 
- app.use(methodOverride('_method'));
- 
- app.set('view engine', 'jsx');
-app.engine('jsx', require('jsx-view-engine').createEngine());
- 
-// INDUCES
-// Routes here in INDUCES order
-
-app.get(('/'),(req, res) => {
+app.get(('/'), (req, res) => {
      res.send("Welcome to the Captain's Log")
  })
  
@@ -109,9 +81,3 @@ app.get('/logs/:title', async (req, res) => {
           const foundLog = await Logs.find({ title: req.params.title})
           res.render('Show', { log: foundLog });
 });
-
-
-//listener
-app.listen(port, () => {
-     console.log(`Bienvenido a Miami`)
-})
